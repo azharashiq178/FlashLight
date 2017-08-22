@@ -1,0 +1,6 @@
+framework module Pods_FlashLight {
+  umbrella header "Pods-FlashLight-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>AKPickerView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-FlashLight.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-FlashLightTests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-FlashLightUITests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>7B850B85EE609CDE03BC0020DB569DA9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C42126C2936A18D9B6DD12BC016BA6C6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E37BD86FF12C286A70ECFC45636D1690</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F48BD9CCCBBF8FEEA37DC8AF890DFEB4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

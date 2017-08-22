@@ -1,0 +1,6 @@
+framework module Pods_FlashLightUITests {
+  umbrella header "Pods-FlashLightUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
