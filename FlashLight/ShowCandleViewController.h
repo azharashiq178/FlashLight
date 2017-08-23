@@ -13,5 +13,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *myGif;
 - (IBAction)resetMaxValues:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UIView *myView;
 @property (strong, nonatomic) CMMotionManager *motionManager;
 @end

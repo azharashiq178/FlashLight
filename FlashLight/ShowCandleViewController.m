@@ -8,6 +8,7 @@
 
 #import "ShowCandleViewController.h"
 #import <CoreMotion/CoreMotion.h>
+#import <AVFoundation/AVFoundation.h>
 
 @interface ShowCandleViewController ()
 {
@@ -37,6 +38,26 @@
 //    self.myGif.animationRepeatCount = 0;
 //    [self.myGif startAnimating];
     // Do any additional setup after loading the view.
+    AVCaptureSession *session = [[AVCaptureSession alloc] init];
+    AVCaptureDevice *videoDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    if (videoDevice)
+    {
+        NSError *error;
+        AVCaptureDeviceInput *videoInput = [AVCaptureDeviceInput deviceInputWithDevice:videoDevice error:&error];
+        if (!error)
+        {
+            if ([session canAddInput:videoInput])
+            {
+                [session addInput:videoInput];
+                AVCaptureVideoPreviewLayer *previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:session];
+                previewLayer.frame = self.myView.bounds;
+                [self.myView.layer addSublayer:previewLayer];
+                [session startRunning];
+            }
+        }
+    }
+    
+    
     
 }
 

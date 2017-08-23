@@ -11,12 +11,18 @@
 #import <AVFoundation/AVFoundation.h>
 #import "VBColorPicker.h"
 #import "CollectionViewCell.h"
+#define ARC4RANDOM_MAX      0x100000000
 
 
 @interface ViewController ()
+{
+    NSTimer *myTimer;
+    AVCaptureDevice *device;
+}
 @property (nonatomic,strong) NSArray *myData;
 @property (assign) int numberItems;
 @property (assign) int currentValue;
+
 @end
 
 @implementation ViewController
@@ -26,6 +32,8 @@
     [super viewDidLoad];
     _Carousel.type = iCarouselTypeLinear;
     [[UIScreen mainScreen] setBrightness:self.screenBrightnessSlider.value];
+//    device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    device = nil;
     [self.torchIntensitySlider setEnabled:NO];
     // Do any additional setup after loading the view, typically from a nib.
     
@@ -39,12 +47,31 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)flashAction:(id)sender {
+    [myTimer invalidate];
+    myTimer = nil;
+    if(([self.torchButton.titleLabel.text isEqualToString: @"Torch OFF"])){
+        [device lockForConfiguration:nil];
+        [myTimer invalidate];
+        myTimer = nil;
+        
+        [device setTorchMode:AVCaptureTorchModeOff];
+        [device setFlashMode:AVCaptureFlashModeOff];
+        [self.torchIntensitySlider setEnabled:NO];
+        [self.torchButton setTitle:@"Torch ON" forState:UIControlStateNormal];
+        [device unlockForConfiguration];
+        device = nil;
+    }
+    else{
+        device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    }
+    if(device == nil){
+        
+//       device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    }
     
-    AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
     if ([device hasTorch] && [device hasFlash]){
         
         [device lockForConfiguration:nil];
-        
         if (device.torchMode == AVCaptureTorchModeOff) {
             
             [device setTorchMode:AVCaptureTorchModeOn];
@@ -54,12 +81,63 @@
             [self.torchIntensitySlider setEnabled:YES];
             
             [self.torchButton setTitle:@"Torch OFF" forState:UIControlStateNormal];
-            
+            if([_myData[self.Carousel.currentItemIndex]  isEqual: @"  1  "]){
+                [self startTimerWithInterval:0.8];
+            }
+            else if([_myData[self.Carousel.currentItemIndex]  isEqual: @"  2  "]){
+                [self startTimerWithInterval:0.7];
+            }
+            else if([_myData[self.Carousel.currentItemIndex]  isEqual: @"  3  "]){
+                [self startTimerWithInterval:0.6];
+            }
+            else if([_myData[self.Carousel.currentItemIndex]  isEqual: @"  4  "]){
+                [self startTimerWithInterval:0.5];
+            }
+            else if([_myData[self.Carousel.currentItemIndex]  isEqual: @"  5  "]){
+                [self startTimerWithInterval:0.4];
+            }
+            else if([_myData[self.Carousel.currentItemIndex]  isEqual: @"  6  "]){
+                [self startTimerWithInterval:0.3];
+            }
+            else if([_myData[self.Carousel.currentItemIndex]  isEqual: @"  7  "]){
+                [self startTimerWithInterval:0.2];
+            }
+            else if([_myData[self.Carousel.currentItemIndex]  isEqual: @"  8  "]){
+                [self startTimerWithInterval:0.1];
+                NSLog(@"i am here");
+            }
+            else if([_myData[self.Carousel.currentItemIndex]  isEqual: @"  SOS  "]){
+                [myTimer invalidate];
+                myTimer = nil;
+                myTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 repeats:YES block:^(NSTimer * _Nonnull timer) {
+                    [device lockForConfiguration:nil];
+                    if (device.torchMode == AVCaptureTorchModeOn){
+                        [device setTorchMode:AVCaptureTorchModeOff];
+                        
+                        [device setFlashMode:AVCaptureFlashModeOff];
+                    }
+                    else{
+                        float val = ((float)arc4random() / ARC4RANDOM_MAX);
+                        NSLog(@"My Val is %f",val);
+                        
+                        [device setTorchMode:AVCaptureTorchModeOn];
+                        
+                        [device setFlashMode:AVCaptureFlashModeOn];
+                        [device setTorchModeOnWithLevel:val error:nil];
+                    }
+                    
+                    [device unlockForConfiguration];
+                }];
+            }
         } else {
+            [myTimer invalidate];
+            myTimer = nil;
+            
             [device setTorchMode:AVCaptureTorchModeOff];
             [device setFlashMode:AVCaptureFlashModeOff];
             [self.torchIntensitySlider setEnabled:NO];
             [self.torchButton setTitle:@"Torch ON" forState:UIControlStateNormal];
+            device = nil;
         }
         [device unlockForConfiguration];
     }
@@ -73,7 +151,7 @@
 
 - (IBAction)phoneIntensityChanged:(id)sender {
     
-    AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
     
     if ([device hasTorch] && [device hasFlash]){
         
@@ -209,6 +287,124 @@
     return value;
 }
 -(void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index{
+    if(device != nil){
+        if(![self.myData[index]  isEqualToString: @"  SOS  "] && ![self.myData[index]  isEqualToString: @"  0  "]){
+            [myTimer invalidate];
+            myTimer = nil;
+            device = nil;
+            device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+            
+            float tmp = index / 10.0f;
+            [self startTimerWithInterval:tmp];
+        }
+        else if ([self.myData[index] isEqualToString:@"  0  "]){
+            [myTimer invalidate];
+            myTimer = nil;
+            device = nil;
+            
+            device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+            [device lockForConfiguration:nil];
+            [device setTorchMode:AVCaptureTorchModeOn];
+            
+            [device setFlashMode:AVCaptureFlashModeOn];
+            [device unlockForConfiguration];
+        }
+        else{
+            [myTimer invalidate];
+            myTimer = nil;
+            myTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 repeats:YES block:^(NSTimer * _Nonnull timer) {
+                [device lockForConfiguration:nil];
+                if (device.torchMode == AVCaptureTorchModeOn){
+                    [device setTorchMode:AVCaptureTorchModeOff];
+                    
+                    [device setFlashMode:AVCaptureFlashModeOff];
+                }
+                else{
+                    float val = ((float)arc4random() / ARC4RANDOM_MAX);
+                    NSLog(@"My Val is %f",val);
+                    
+                    [device setTorchMode:AVCaptureTorchModeOn];
+                    
+                    [device setFlashMode:AVCaptureFlashModeOn];
+                    [device setTorchModeOnWithLevel:val error:nil];
+                }
+                
+                [device unlockForConfiguration];
+            }];
+        }
+    }
     NSLog(@"You Selected %@",self.myData[index]);
+    
+}
+-(void)carouselDidEndDragging:(iCarousel *)carousel willDecelerate:(BOOL)decelerate{
+    NSInteger index = carousel.currentItemIndex;
+    if(device != nil){
+        if(![self.myData[index]  isEqualToString: @"  SOS  "] && ![self.myData[index]  isEqualToString: @"  0  "]){
+            [myTimer invalidate];
+            myTimer = nil;
+            device = nil;
+            device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+            
+            float tmp = index / 10.0f;
+            [self startTimerWithInterval:tmp];
+        }
+        else if ([self.myData[index] isEqualToString:@"  0  "]){
+            [myTimer invalidate];
+            myTimer = nil;
+            device = nil;
+            
+            device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+            [device lockForConfiguration:nil];
+            [device setTorchMode:AVCaptureTorchModeOn];
+            
+            [device setFlashMode:AVCaptureFlashModeOn];
+            [device unlockForConfiguration];
+        }
+        else{
+            [myTimer invalidate];
+            myTimer = nil;
+            myTimer = [NSTimer scheduledTimerWithTimeInterval:0 repeats:YES block:^(NSTimer * _Nonnull timer) {
+                [device lockForConfiguration:nil];
+                if (device.torchMode == AVCaptureTorchModeOn){
+                    [device setTorchMode:AVCaptureTorchModeOff];
+                    
+                    [device setFlashMode:AVCaptureFlashModeOff];
+                }
+                else{
+                    float val = ((float)arc4random() / ARC4RANDOM_MAX);
+                    NSLog(@"My Val is %f",val);
+                    
+                    [device setTorchMode:AVCaptureTorchModeOn];
+                    
+                    [device setFlashMode:AVCaptureFlashModeOn];
+                    [device setTorchModeOnWithLevel:val error:nil];
+                }
+                
+                [device unlockForConfiguration];
+            }];
+        }
+    }
+    NSLog(@"Dragging endded %@",self.myData[carousel.currentItemIndex]);
+    
+}
+-(void)startTimerWithInterval:(float)second{
+    myTimer = [NSTimer scheduledTimerWithTimeInterval:second repeats:YES block:^(NSTimer * _Nonnull timer) {
+        
+        [device lockForConfiguration:nil];
+        if (device.torchMode == AVCaptureTorchModeOn){
+            [device setTorchMode:AVCaptureTorchModeOff];
+            
+            [device setFlashMode:AVCaptureFlashModeOff];
+        }
+        else{
+            
+            [device setTorchMode:AVCaptureTorchModeOn];
+            
+            [device setFlashMode:AVCaptureFlashModeOn];
+        }
+      
+        [device unlockForConfiguration];
+        
+    }];
 }
 @end
