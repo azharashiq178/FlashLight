@@ -19,6 +19,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSMutableArray *tmpArray = [[NSMutableArray alloc] init];
+    for(int i = 0 ;i < 6;i++){
+        NSString *tmpStr = [NSString stringWithFormat:@"frame_%d.png",i];
+        UIImage *tmpImage = [UIImage imageNamed:tmpStr];
+        [tmpArray addObject:tmpImage];
+    }
+    self.myGif.animationImages = tmpArray;
+    self.myGif.animationRepeatCount = 0;
+    self.myGif.animationDuration = 1.0f;
+    [self.myGif startAnimating];
+    self.myGif.image = [UIImage imageNamed:@"frame_0.png"];
 //    NSURL *imageURL = [NSURL URLWithString:@"https://media.giphy.com/media/TsgcDBU0LOjAs/giphy.gif"];
 //    NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
 //    self.myGif.image = [UIImage imageWithData:imageData];
@@ -26,6 +37,7 @@
 //    self.myGif.animationRepeatCount = 0;
 //    [self.myGif startAnimating];
     // Do any additional setup after loading the view.
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -75,26 +87,32 @@
                     NSLog(@"My Angle is %f",ab);
 //                float tmpRad = 120 /180 * M_PI;
 //                self.myGif.transform = CGAffineTransformIdentity;
-                float degrees1 = 90 - ab ;
+                if(ab >= 0 && ab <= 180){
+                    
+                    float degrees1 = 90 - ab ;
+                    
+                    if(degrees1 < 0){
+                        degrees1 = degrees1 * -1;
+                    }
+                    if(ab < 90){
+                        degrees1 = 90 - ab;
+                        degrees1 = degrees1 * -1;
+                    }
+                    float radians1 = ((degrees1) / 180.0 * M_PI);
+                    self.myGif.layer.anchorPoint = CGPointMake(0.5, 1);
+                    self.myGif.layer.position = CGPointMake((self.view.frame.size.width / 2)+10 , self.view.frame.size.height - 70);
+                    
+                    self.myGif.transform = CGAffineTransformMakeRotation(radians1);
+                }
+                else{
+                    self.myGif.transform = CGAffineTransformMakeRotation(0);
+                }
                 
-                if(degrees1 < 0){
-                    degrees1 = degrees1 * -1;
-                }
-                if(ab < 90){
-                    degrees1 = 90 - ab;
-                    degrees1 = degrees1 * -1;
-                }
-                float radians1 = ((degrees1) / 180.0 * M_PI);
-                self.myGif.layer.transform = CATransform3DMakeRotation(radians1, 0, 0, 1.0);
-
-//                self.myGif.transform = CGAffineTransformMakeRotation(90 * M_PI / 180);
-//                self.myGif.transform = CGAffineTransformRotate(self.myGif.transform,90*(90/M_PI));
+                
                 
                 CGFloat radians = atan2f(self.myGif.transform.a, self.myGif.transform.b);
                 CGFloat degrees = radians * (180 / M_PI);
                 NSLog(@"Current Angle is %f",degrees);
-//                    self.myGif.transform = CGAffineTransformMakeTranslation(accelerometerData.acceleration.y, accelerometerData.acceleration.x);
-//                }
                 
             });
         }];

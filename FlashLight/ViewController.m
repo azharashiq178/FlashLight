@@ -9,14 +9,12 @@
 #import "ViewController.h"
 #import <AVKit/AVKit.h>
 #import <AVFoundation/AVFoundation.h>
-#import "AKPickerView.h"
 #import "VBColorPicker.h"
 #import "CollectionViewCell.h"
 
 
 @interface ViewController ()
 @property (nonatomic,strong) NSArray *myData;
-@property (nonatomic,strong) AKPickerView *pickerView;
 @property (assign) int numberItems;
 @property (assign) int currentValue;
 @end
@@ -26,24 +24,14 @@
 //@synthesize cPicker=_cPicker;
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _Carousel.type = iCarouselTypeLinear;
     [[UIScreen mainScreen] setBrightness:self.screenBrightnessSlider.value];
     [self.torchIntensitySlider setEnabled:NO];
     // Do any additional setup after loading the view, typically from a nib.
     
     self.myData = [[NSArray alloc] initWithObjects:@"  0  ",@"  1  ",@"  2  ",@"  3  ",@"  4  ",@"  5  ",@"  6  ",@"  7  ",@"  8  ",@"  SOS  ", nil];
-    self.pickerView = [[AKPickerView alloc] initWithFrame:CGRectMake(0, 10, self.view.frame.size.width, 40)];
+    [self.Carousel reloadData];
     
-    self.pickerView.delegate = self;
-    
-    self.pickerView.dataSource = self;
-    
-    self.numberItems = 10;
-    
-    self.currentValue = 0;
-    
-    [self.pickerView selectItem:(self.currentValue + (self.numberItems * 4)) animated:YES];
-    
-    [self.view addSubview:self.pickerView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -99,16 +87,7 @@
         [device unlockForConfiguration];
     }
 }
-- (NSUInteger)numberOfItemsInPickerView:(AKPickerView *)pickerView{
-    return self.numberItems * 6;
-}
-- (NSString *)pickerView:(AKPickerView *)pickerView titleForItem:(NSInteger)item{
-    return [NSString stringWithFormat:@"%@", self.myData[item % self.numberItems]];
-}
-- (void)pickerView:(AKPickerView *)pickerView didSelectItem:(NSInteger)item{
-        NSInteger rowValueSelected = item % self.numberItems;
-        NSLog(@"row value selected: %@", self.myData[rowValueSelected]);
-}
+
 //- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
 //    //return NSIntegerMax; -- this does not work on 64-bit CPUs, pick an arbitrary value that the user will realistically never scroll to like this...
 //    return self.numberItems * 100;
@@ -152,12 +131,84 @@
     
     [self presentViewController:vc animated:YES completion:nil];
 }
--(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 500;
+
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+    
+    //free up memory by releasing subviews
+    self.Carousel = nil;
 }
--(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    CollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
-    cell.textLabel.text = [NSString stringWithFormat:@"%d",indexPath.row % 10];
-    return cell;
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return YES;
+}
+
+#pragma mark -
+#pragma mark iCarousel methods
+
+- (NSInteger)numberOfItemsInCarousel:(iCarousel *)carousel
+{
+    //return the total number of items in the carousel
+    return [_myData count];
+}
+
+- (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view
+{
+    UILabel *label = nil;
+    
+    //create new view if no view is available for recycling
+    if (view == nil)
+    {
+        //don't do anything specific to the index within
+        //this `if (view == nil) {...}` statement because the view will be
+        //recycled and used with other index values later
+        view = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+        ((UIImageView *)view).image = [UIImage imageNamed:@"page.png"];
+        //        view.contentMode = UIViewContentModeCenter;
+        
+        label = [[UILabel alloc] initWithFrame:view.bounds];
+        label.backgroundColor = [UIColor clearColor];
+        label.textAlignment = NSTextAlignmentCenter;
+        label.font = [label.font fontWithSize:16];
+        label.tag = 1;
+        [view addSubview:label];
+    }
+    else
+    {
+        //get a reference to the label in the recycled view
+        label = (UILabel *)[view viewWithTag:1];
+    }
+    
+    //set item label
+    //remember to always set any properties of your carousel item
+    //views outside of the `if (view == nil) {...}` check otherwise
+    //you'll get weird issues with carousel item content appearing
+    //in the wrong place in the carousel
+    label.text = _myData[index];
+    
+    return view;
+}
+
+- (CGFloat)carousel:(iCarousel *)carousel valueForOption:(iCarouselOption)option withDefault:(CGFloat)value
+{
+    switch (option) {
+        case iCarouselOptionWrap:
+            return YES;
+            break;
+            
+        default:
+            break;
+    }
+    if (option == iCarouselOptionSpacing)
+    {
+        return value * 1.1;
+    }
+    
+    return value;
+}
+-(void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index{
+    NSLog(@"You Selected %@",self.myData[index]);
 }
 @end

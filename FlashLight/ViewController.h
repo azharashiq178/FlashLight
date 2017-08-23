@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "VBColorPicker.h"
+#import "iCarousel.h"
 
-@interface ViewController : UIViewController <UICollectionViewDelegate,UICollectionViewDataSource>
+@interface ViewController : UIViewController <iCarouselDelegate,iCarouselDataSource>
 @property (weak, nonatomic) IBOutlet UISlider *screenBrightnessSlider;
 @property (weak, nonatomic) IBOutlet UIButton *torchButton;
 @property (weak, nonatomic) IBOutlet UISlider *torchIntensitySlider;
@@ -20,6 +21,7 @@
 - (IBAction)sliderValueChanged:(id)sender;
 - (IBAction)phoneIntensityChanged:(id)sender;
 @property (weak, nonatomic) IBOutlet UICollectionView *testCollectionView;
+@property (weak, nonatomic) IBOutlet iCarousel *Carousel;
 
 @end
 

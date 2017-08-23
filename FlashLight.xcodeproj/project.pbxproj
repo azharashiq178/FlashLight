@@ -19,6 +19,7 @@
 		7E52EE1E1F47040D008D8350 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E52EE1C1F47040D008D8350 /* LaunchScreen.storyboard */; };
 		7E52EE291F47040D008D8350 /* FlashLightTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E52EE281F47040D008D8350 /* FlashLightTests.m */; };
 		7E52EE341F47040D008D8350 /* FlashLightUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E52EE331F47040D008D8350 /* FlashLightUITests.m */; };
+		7E903AE01F4D3F3200E5843F /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E903ADF1F4D3F3200E5843F /* iCarousel.m */; };
 		7E9E6CC41F4AC3B900236C92 /* VBColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E9E6CC31F4AC3B900236C92 /* VBColorPicker.m */; };
 		7EAE8EC41F4AC6F700F70052 /* SelectColorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EAE8EC31F4AC6F700F70052 /* SelectColorVC.m */; };
 		7EAE8EC71F4AE71C00F70052 /* ShowCandleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EAE8EC61F4AE71C00F70052 /* ShowCandleViewController.m */; };
@@ -73,6 +74,8 @@
 		7E52EE2F1F47040D008D8350 /* FlashLightUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlashLightUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E52EE331F47040D008D8350 /* FlashLightUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlashLightUITests.m; sourceTree = "<group>"; };
 		7E52EE351F47040D008D8350 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7E903ADE1F4D3F3200E5843F /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
+		7E903ADF1F4D3F3200E5843F /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
 		7E9E6CC21F4AC3B900236C92 /* VBColorPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBColorPicker.h; sourceTree = "<group>"; };
 		7E9E6CC31F4AC3B900236C92 /* VBColorPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBColorPicker.m; sourceTree = "<group>"; };
 		7EAE8EC21F4AC6F700F70052 /* SelectColorVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectColorVC.h; sourceTree = "<group>"; };
@@ -157,6 +160,8 @@
 				7EAE8EC31F4AC6F700F70052 /* SelectColorVC.m */,
 				7E9E6CC21F4AC3B900236C92 /* VBColorPicker.h */,
 				7E9E6CC31F4AC3B900236C92 /* VBColorPicker.m */,
+				7E903ADE1F4D3F3200E5843F /* iCarousel.h */,
+				7E903ADF1F4D3F3200E5843F /* iCarousel.m */,
 				7E52EE141F47040D008D8350 /* Main.storyboard */,
 				7E52EE1A1F47040D008D8350 /* Assets.xcassets */,
 				7E52EE1C1F47040D008D8350 /* LaunchScreen.storyboard */,
@@ -496,6 +501,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E52EE131F47040D008D8350 /* ViewController.m in Sources */,
+				7E903AE01F4D3F3200E5843F /* iCarousel.m in Sources */,
 				7E52EE191F47040D008D8350 /* FlashLight.xcdatamodeld in Sources */,
 				7EAE8EC41F4AC6F700F70052 /* SelectColorVC.m in Sources */,
 				7E2769011F4C42C600199E50 /* CollectionViewCell.m in Sources */,
