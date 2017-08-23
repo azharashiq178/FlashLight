@@ -207,9 +207,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Candle-Flame-psd51140" translatesAutoresizingMaskIntoConstraints="NO" id="efI-ax-bR0">
-                                <rect key="frame" x="67" y="227" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HiRes" translatesAutoresizingMaskIntoConstraints="NO" id="efI-ax-bR0">
+                                <rect key="frame" x="67" y="269.5" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="1se-ic-VlZ"/>
+                                    <constraint firstAttribute="height" constant="128" id="dwS-vC-wLN"/>
+                                </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R35-Ks-Uhf">
                                 <rect key="frame" x="9" y="20" width="73" height="30"/>
@@ -221,6 +224,10 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="efI-ax-bR0" firstAttribute="centerX" secondItem="Bcx-cZ-OPl" secondAttribute="centerX" id="eJq-Bo-frK"/>
+                            <constraint firstItem="efI-ax-bR0" firstAttribute="centerY" secondItem="Bcx-cZ-OPl" secondAttribute="centerY" id="pxK-MK-ygZ"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="compassImage" destination="efI-ax-bR0" id="Wqb-xm-8xc"/>
@@ -233,5 +240,6 @@
     </scenes>
     <resources>
         <image name="Candle-Flame-psd51140" width="165" height="400"/>
+        <image name="HiRes" width="2800" height="2904"/>
     </resources>
 </document>
