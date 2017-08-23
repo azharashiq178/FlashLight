@@ -129,6 +129,7 @@
 }
 */
 - (IBAction)dissmissScreen:(id)sender {
+    [manager stopAccelerometerUpdates];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
