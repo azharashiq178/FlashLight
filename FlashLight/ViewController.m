@@ -30,6 +30,8 @@
 //@synthesize cPicker=_cPicker;
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"Compass"];
+//    [[NSUserDefaults standardUserDefaults] synchronize];
     _Carousel.type = iCarouselTypeLinear;
     [[UIScreen mainScreen] setBrightness:self.screenBrightnessSlider.value];
 //    device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
@@ -39,9 +41,22 @@
     
     self.myData = [[NSArray alloc] initWithObjects:@"  0  ",@"  1  ",@"  2  ",@"  3  ",@"  4  ",@"  5  ",@"  6  ",@"  7  ",@"  8  ",@"  SOS  ", nil];
     [self.Carousel reloadData];
-    
+//    NSLog(@"View index is %ld",self.Carousel.currentItemIndex);
+//    UIView *mySuperView1 = [self.Carousel itemViewAtIndex:0];
+//    for(UIView *view in mySuperView1.subviews){
+//        if([view isKindOfClass:[UILabel class]]){
+//            UILabel *tmpLabel = (UILabel *)view;
+//            [tmpLabel setTextColor:[UIColor redColor]];
+//            [view removeFromSuperview];
+////            [mySuperView1 addSubview:tmpLabel];
+//            [[self.Carousel itemViewAtIndex:0] addSubview:tmpLabel];
+//        }
+//    }
 }
-
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.compassButton setHidden:![[NSUserDefaults standardUserDefaults] boolForKey:@"Compass"]];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -104,7 +119,7 @@
             }
             else if([_myData[self.Carousel.currentItemIndex]  isEqual: @"  8  "]){
                 [self startTimerWithInterval:0.1];
-                NSLog(@"i am here");
+//                NSLog(@"i am here");
             }
             else if([_myData[self.Carousel.currentItemIndex]  isEqual: @"  SOS  "]){
                 [myTimer invalidate];
@@ -118,11 +133,13 @@
                     }
                     else{
                         float val = ((float)arc4random() / ARC4RANDOM_MAX);
-                        NSLog(@"My Val is %f",val);
+                        
+//                        NSLog(@"My Val is %f",val);
                         
                         [device setTorchMode:AVCaptureTorchModeOn];
                         
                         [device setFlashMode:AVCaptureFlashModeOn];
+                        
                         [device setTorchModeOnWithLevel:val error:nil];
                     }
                     
@@ -248,6 +265,12 @@
         
         label = [[UILabel alloc] initWithFrame:view.bounds];
         label.backgroundColor = [UIColor clearColor];
+        if(index == self.Carousel.currentItemIndex){
+            [label setTextColor:[UIColor redColor]];
+        }
+        else{
+            [label setTextColor:[UIColor blackColor]];
+        }
         label.textAlignment = NSTextAlignmentCenter;
         label.font = [label.font fontWithSize:16];
         label.tag = 1;
@@ -287,6 +310,25 @@
     return value;
 }
 -(void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index{
+//    NSLog(@"My Selected index %ld",self.Carousel.currentItemIndex);
+    UIView *mySuperView = [self.Carousel currentItemView];
+    for(UIView *view in mySuperView.subviews){
+        if([view isKindOfClass:[UILabel class]]){
+            UILabel *tmpLabel = (UILabel *)view;
+            [tmpLabel setTextColor:[UIColor blackColor]];
+            [view removeFromSuperview];
+            [mySuperView addSubview:tmpLabel];
+        }
+    }
+    UIView *mySuperView1 = [self.Carousel itemViewAtIndex:index];
+    for(UIView *view in mySuperView1.subviews){
+        if([view isKindOfClass:[UILabel class]]){
+            UILabel *tmpLabel = (UILabel *)view;
+            [tmpLabel setTextColor:[UIColor redColor]];
+            [view removeFromSuperview];
+            [mySuperView1 addSubview:tmpLabel];
+        }
+    }
     if(device != nil){
         if(![self.myData[index]  isEqualToString: @"  SOS  "] && ![self.myData[index]  isEqualToString: @"  0  "]){
             [myTimer invalidate];
@@ -321,7 +363,7 @@
                 }
                 else{
                     float val = ((float)arc4random() / ARC4RANDOM_MAX);
-                    NSLog(@"My Val is %f",val);
+//                    NSLog(@"My Val is %f",val);
                     
                     [device setTorchMode:AVCaptureTorchModeOn];
                     
@@ -333,10 +375,10 @@
             }];
         }
     }
-    NSLog(@"You Selected %@",self.myData[index]);
+//    NSLog(@"You Selected %@",self.myData[index]);
     
 }
--(void)carouselDidEndDragging:(iCarousel *)carousel willDecelerate:(BOOL)decelerate{
+-(void)carouselDidEndDecelerating:(iCarousel *)carousel{
     NSInteger index = carousel.currentItemIndex;
     if(device != nil){
         if(![self.myData[index]  isEqualToString: @"  SOS  "] && ![self.myData[index]  isEqualToString: @"  0  "]){
@@ -372,7 +414,7 @@
                 }
                 else{
                     float val = ((float)arc4random() / ARC4RANDOM_MAX);
-                    NSLog(@"My Val is %f",val);
+//                    NSLog(@"My Val is %f",val);
                     
                     [device setTorchMode:AVCaptureTorchModeOn];
                     
@@ -384,9 +426,42 @@
             }];
         }
     }
-    NSLog(@"Dragging endded %@",self.myData[carousel.currentItemIndex]);
-    
+    UIView *mySuperView = [carousel currentItemView];
+    for(UIView *view in mySuperView.subviews){
+        if([view isKindOfClass:[UILabel class]]){
+            [view setTintColor:[UIColor redColor]];
+            UILabel *tmpLabel = (UILabel *)view;
+            [tmpLabel setTextColor:[UIColor redColor]];
+            [view removeFromSuperview];
+            [mySuperView addSubview:tmpLabel];
+        }
+    }
 }
+-(void)carouselWillBeginDecelerating:(iCarousel *)carousel{
+    UIView *mySuperView = [carousel currentItemView];
+    for(UIView *view in mySuperView.subviews){
+        if([view isKindOfClass:[UILabel class]]){
+            [view setTintColor:[UIColor redColor]];
+            UILabel *tmpLabel = (UILabel *)view;
+            [tmpLabel setTextColor:[UIColor blackColor]];
+            [view removeFromSuperview];
+            [mySuperView addSubview:tmpLabel];
+        }
+    }
+}
+-(void)carouselWillBeginDragging:(iCarousel *)carousel{
+    UIView *mySuperView = [carousel currentItemView];
+    for(UIView *view in mySuperView.subviews){
+        if([view isKindOfClass:[UILabel class]]){
+            [view setTintColor:[UIColor redColor]];
+            UILabel *tmpLabel = (UILabel *)view;
+            [tmpLabel setTextColor:[UIColor blackColor]];
+            [view removeFromSuperview];
+            [mySuperView addSubview:tmpLabel];
+        }
+    }
+}
+
 -(void)startTimerWithInterval:(float)second{
     myTimer = [NSTimer scheduledTimerWithTimeInterval:second repeats:YES block:^(NSTimer * _Nonnull timer) {
         
@@ -407,4 +482,5 @@
         
     }];
 }
+
 @end
