@@ -35,9 +35,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.screenBrightnessSlider setThumbImage:[UIImage imageNamed:@"brightness_btn"] forState:UIControlStateNormal];
-    [self.screenBrightnessSlider setMaximumTrackImage:[UIImage imageNamed:@"brightness_line"] forState:UIControlStateNormal];
-    [self.screenBrightnessSlider setMinimumTrackImage:[UIImage imageNamed:@"brightness_line"] forState:UIControlStateNormal];
+//    [self.screenBrightnessSlider setThumbImage:[UIImage imageNamed:@"brightness_btn"] forState:UIControlStateNormal];
+//    [self.screenBrightnessSlider setMaximumTrackImage:[UIImage imageNamed:@"brightness_line"] forState:UIControlStateNormal];
+//    [self.screenBrightnessSlider setMinimumTrackImage:[UIImage imageNamed:@"brightness_line"] forState:UIControlStateNormal];
     
     
     [self.torchIntensitySlider setThumbImage:[UIImage imageNamed:@"brightness_btn"] forState:UIControlStateNormal];
@@ -48,7 +48,7 @@
 //    [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"Compass"];
 //    [[NSUserDefaults standardUserDefaults] synchronize];
     _Carousel.type = iCarouselTypeLinear;
-    [[UIScreen mainScreen] setBrightness:self.screenBrightnessSlider.value];
+//    [[UIScreen mainScreen] setBrightness:self.screenBrightnessSlider.value];
 //    device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
     device = nil;
     [self.torchIntensitySlider setEnabled:NO];
@@ -200,10 +200,10 @@
 }
 
 
-- (IBAction)sliderValueChanged:(id)sender {
-    
-    [[UIScreen mainScreen] setBrightness:self.screenBrightnessSlider.value];
-}
+//- (IBAction)sliderValueChanged:(id)sender {
+//    
+//    [[UIScreen mainScreen] setBrightness:self.screenBrightnessSlider.value];
+//}
 
 - (IBAction)phoneIntensityChanged:(id)sender {
     
@@ -351,6 +351,7 @@
 
 - (CGFloat)carousel:(iCarousel *)carousel valueForOption:(iCarouselOption)option withDefault:(CGFloat)value
 {
+    
     switch (option) {
         case iCarouselOptionWrap:
             return YES;
@@ -382,6 +383,7 @@
                 [(UIImageView *)view setImage:[UIImage imageNamed:@"gray_line"]];
             }
         }
+        
     }
     UIView *mySuperView1 = [self.Carousel itemViewAtIndex:index];
     for(UIView *view in mySuperView1.subviews){
@@ -428,6 +430,7 @@
                     [device setTorchMode:AVCaptureTorchModeOff];
                     
                     [device setFlashMode:AVCaptureFlashModeOff];
+                    [self.torchButton setImage:[UIImage imageNamed:@"flash_normal_btn"] forState:UIControlStateNormal];
                 }
                 else{
                     float val = ((float)arc4random() / ARC4RANDOM_MAX);
@@ -437,6 +440,7 @@
                     
                     [device setFlashMode:AVCaptureFlashModeOn];
                     [device setTorchModeOnWithLevel:val error:nil];
+                    [self.torchButton setImage:[UIImage imageNamed:@"flash_on_btn"] forState:UIControlStateNormal];
                 }
                 
                 [device unlockForConfiguration];
@@ -479,6 +483,7 @@
                     [device setTorchMode:AVCaptureTorchModeOff];
                     
                     [device setFlashMode:AVCaptureFlashModeOff];
+                    [self.torchButton setImage:[UIImage imageNamed:@"flash_normal_btn"] forState:UIControlStateNormal];
                 }
                 else{
                     float val = ((float)arc4random() / ARC4RANDOM_MAX);
@@ -488,60 +493,14 @@
                     
                     [device setFlashMode:AVCaptureFlashModeOn];
                     [device setTorchModeOnWithLevel:val error:nil];
+                    [self.torchButton setImage:[UIImage imageNamed:@"flash_on_btn"] forState:UIControlStateNormal];
                 }
                 
                 [device unlockForConfiguration];
             }];
         }
     }
-//    if(device != nil){
-//        if(![self.myData[index]  isEqualToString: @"SOS"] && ![self.myData[index]  isEqualToString: @"0"]){
-//            [myTimer invalidate];
-//            myTimer = nil;
-//            device = nil;
-//            device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-//            
-//            float tmp = index / 10.0f;
-//            [self startTimerWithInterval:tmp];
-//        }
-//        else if ([self.myData[index] isEqualToString:@"0"]){
-//            [myTimer invalidate];
-//            myTimer = nil;
-//            device = nil;
-//            
-//            device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-//            [device lockForConfiguration:nil];
-//            [device setTorchMode:AVCaptureTorchModeOn];
-//            
-//            [device setFlashMode:AVCaptureFlashModeOn];
-//            [device unlockForConfiguration];
-//        }
-//        else{
-//            [myTimer invalidate];
-//            myTimer = nil;
-//            device = nil;
-//            device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-//            myTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 repeats:YES block:^(NSTimer * _Nonnull timer) {
-//                [device lockForConfiguration:nil];
-//                if (device.torchMode == AVCaptureTorchModeOn){
-//                    [device setTorchMode:AVCaptureTorchModeOff];
-//                    
-//                    [device setFlashMode:AVCaptureFlashModeOff];
-//                }
-//                else{
-//                    float val = ((float)arc4random() / ARC4RANDOM_MAX);
-////                    NSLog(@"My Val is %f",val);
-//                    
-//                    [device setTorchMode:AVCaptureTorchModeOn];
-//                    
-//                    [device setFlashMode:AVCaptureFlashModeOn];
-//                    [device setTorchModeOnWithLevel:val error:nil];
-//                }
-//                
-//                [device unlockForConfiguration];
-//            }];
-//        }
-//    }
+
     UIView *mySuperView = [carousel currentItemView];
     for(UIView *view in mySuperView.subviews){
         if([view isKindOfClass:[UILabel class]]){
@@ -558,9 +517,13 @@
         }
     }
 }
--(void)carouselDidScroll:(iCarousel *)carousel{
-    AudioServicesPlaySystemSound(1105);
-}
+//-(void)carouselDidScroll:(iCarousel *)carousel{
+//    if([carousel isDecelerating]){
+//        NSLog(@"DRagging");
+//        AudioServicesPlaySystemSound(1105);
+//    }
+////    AudioServicesPlaySystemSound(1105);
+//}
 -(void)carouselWillBeginDecelerating:(iCarousel *)carousel{
     UIView *mySuperView = [carousel currentItemView];
     for(UIView *view in mySuperView.subviews){
@@ -577,6 +540,10 @@
             }
         }
     }
+}
+-(void)carouselCurrentItemIndexDidChange:(iCarousel *)carousel{
+    
+    AudioServicesPlaySystemSound(1104);
 }
 -(void)carouselWillBeginDragging:(iCarousel *)carousel{
     UIView *mySuperView = [carousel currentItemView];
@@ -668,12 +635,15 @@
             [device setTorchMode:AVCaptureTorchModeOff];
             
             [device setFlashMode:AVCaptureFlashModeOff];
+            [self.torchButton setImage:[UIImage imageNamed:@"flash_normal_btn"] forState:UIControlStateNormal];
         }
         else{
             
             [device setTorchMode:AVCaptureTorchModeOn];
             
             [device setFlashMode:AVCaptureFlashModeOn];
+            
+            [self.torchButton setImage:[UIImage imageNamed:@"flash_on_btn"] forState:UIControlStateNormal];
         }
       
         [device unlockForConfiguration];
@@ -682,10 +652,14 @@
 }
 
 - (IBAction)moreApps:(id)sender {
+    [self.activityIndicator setHidden:NO];
+    [self.activityIndicator startAnimating];
     SKStoreProductViewController* spvc = [[SKStoreProductViewController alloc] init];
     [spvc loadProductWithParameters:@{SKStoreProductParameterITunesItemIdentifier : @284417353}
                     completionBlock:^(BOOL result, NSError * _Nullable error) {
                         [self presentViewController:spvc animated:YES completion:nil];
+                        [self.activityIndicator setHidden:YES];
+                        [self.activityIndicator stopAnimating];
                     }];
     spvc.delegate = self;
     

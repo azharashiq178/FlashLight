@@ -22,8 +22,9 @@
 
 //@property (nonatomic, strong) IBOutlet UIView *rect;
 //@property (nonatomic, strong) VBColorPicker *cPicker;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
-- (IBAction)sliderValueChanged:(id)sender;
+//- (IBAction)sliderValueChanged:(id)sender;
 - (IBAction)phoneIntensityChanged:(id)sender;
 @property (weak, nonatomic) IBOutlet UICollectionView *testCollectionView;
 @property (weak, nonatomic) IBOutlet UIButton *discoButton;

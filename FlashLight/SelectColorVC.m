@@ -18,8 +18,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.screenBrightnessSlider setThumbImage:[UIImage imageNamed:@"brightness_btn"] forState:UIControlStateNormal];
-    [self.screenBrightnessSlider setMaximumTrackImage:[UIImage imageNamed:@"brightness_line"] forState:UIControlStateNormal];
-    [self.screenBrightnessSlider setMinimumTrackImage:[UIImage imageNamed:@"brightness_line"] forState:UIControlStateNormal];
+    [self.screenBrightnessSlider setMaximumTrackImage:[UIImage imageNamed:@"top_seperator_line"] forState:UIControlStateNormal];
+    [self.screenBrightnessSlider setMinimumTrackImage:[UIImage imageNamed:@"top_seperator_line"] forState:UIControlStateNormal];
     [[UIScreen mainScreen] setBrightness:self.screenBrightnessSlider.value];
     // Do any additional setup after loading the view.
     if (self.cPicker == nil) {
