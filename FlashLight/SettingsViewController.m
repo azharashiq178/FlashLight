@@ -17,11 +17,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.settingData = [[NSArray alloc] initWithObjects:@"Auto Turn On",@"Disco",@"Compass",@"Gesture Driven Light Switch",@"Go Pro", nil];
+    self.settingData = [[NSArray alloc] initWithObjects:@"Auto Turn On",@"Disco",@"Compass",@"Gesture Driven Light Switch", nil];
     
     // Do any additional setup after loading the view.
     [self.settingsTableView reloadData];
 }
+//-(void)viewWillAppear:(BOOL)animated{
+//    [self.navigationController.navigationBar setHidden:NO];
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -54,5 +57,16 @@
     [cell showIndicator];
     
     return cell;
+}
+- (IBAction)dismissView:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return 5;
+}
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    UICollectionViewCell *tmpCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell1" forIndexPath:indexPath];
+    
+    return tmpCell;
 }
 @end

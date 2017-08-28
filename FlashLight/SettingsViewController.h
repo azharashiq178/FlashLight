@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SettingsViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
+@interface SettingsViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *settingsTableView;
+@property (weak, nonatomic) IBOutlet UICollectionView *themesCollectionView;
 
 @end

@@ -17,10 +17,14 @@
 @synthesize cPicker=_cPicker;
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.screenBrightnessSlider setThumbImage:[UIImage imageNamed:@"brightness_btn"] forState:UIControlStateNormal];
+    [self.screenBrightnessSlider setMaximumTrackImage:[UIImage imageNamed:@"brightness_line"] forState:UIControlStateNormal];
+    [self.screenBrightnessSlider setMinimumTrackImage:[UIImage imageNamed:@"brightness_line"] forState:UIControlStateNormal];
+    [[UIScreen mainScreen] setBrightness:self.screenBrightnessSlider.value];
     // Do any additional setup after loading the view.
     if (self.cPicker == nil) {
         [self.view setBackgroundColor:[UIColor whiteColor]];
-        self.cPicker = [[VBColorPicker alloc] initWithFrame:CGRectMake((self.view.frame.size.width / 2) - 101, self.view.frame.size.height - 205, 202, 202)];
+        self.cPicker = [[VBColorPicker alloc] initWithFrame:CGRectMake((self.view.frame.size.width / 2) - 101, self.view.frame.size.height - 270, 202, 202)];
 //        [_cPicker setCenter:self.view.center];
         [self.view addSubview:_cPicker];
         [_cPicker setDelegate:self];
@@ -95,5 +99,9 @@
 //}
 - (IBAction)dismissScreen:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+- (IBAction)sliderValueChanged:(id)sender {
+    
+    [[UIScreen mainScreen] setBrightness:self.screenBrightnessSlider.value];
 }
 @end

@@ -22,6 +22,7 @@
 		7E52EE291F47040D008D8350 /* FlashLightTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E52EE281F47040D008D8350 /* FlashLightTests.m */; };
 		7E52EE341F47040D008D8350 /* FlashLightUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E52EE331F47040D008D8350 /* FlashLightUITests.m */; };
 		7E903AE01F4D3F3200E5843F /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E903ADF1F4D3F3200E5843F /* iCarousel.m */; };
+		7E9DA3251F5414EF007208C6 /* DiscoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E9DA3241F5414EF007208C6 /* DiscoViewController.m */; };
 		7E9E6CC41F4AC3B900236C92 /* VBColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E9E6CC31F4AC3B900236C92 /* VBColorPicker.m */; };
 		7EAE8EC41F4AC6F700F70052 /* SelectColorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EAE8EC31F4AC6F700F70052 /* SelectColorVC.m */; };
 		7EAE8EC71F4AE71C00F70052 /* ShowCandleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EAE8EC61F4AE71C00F70052 /* ShowCandleViewController.m */; };
@@ -82,6 +83,8 @@
 		7E52EE351F47040D008D8350 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7E903ADE1F4D3F3200E5843F /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
 		7E903ADF1F4D3F3200E5843F /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
+		7E9DA3231F5414EF007208C6 /* DiscoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoViewController.h; sourceTree = "<group>"; };
+		7E9DA3241F5414EF007208C6 /* DiscoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoViewController.m; sourceTree = "<group>"; };
 		7E9E6CC21F4AC3B900236C92 /* VBColorPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBColorPicker.h; sourceTree = "<group>"; };
 		7E9E6CC31F4AC3B900236C92 /* VBColorPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBColorPicker.m; sourceTree = "<group>"; };
 		7EAE8EC21F4AC6F700F70052 /* SelectColorVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectColorVC.h; sourceTree = "<group>"; };
@@ -158,6 +161,7 @@
 		7E52EE0A1F47040D008D8350 /* FlashLight */ = {
 			isa = PBXGroup;
 			children = (
+				7E9DA3221F541495007208C6 /* DiscoViewController */,
 				7E52EE0E1F47040D008D8350 /* AppDelegate.h */,
 				7E52EE0F1F47040D008D8350 /* AppDelegate.m */,
 				7E52EE111F47040D008D8350 /* ViewController.h */,
@@ -212,6 +216,15 @@
 				7E52EE351F47040D008D8350 /* Info.plist */,
 			);
 			path = FlashLightUITests;
+			sourceTree = "<group>";
+		};
+		7E9DA3221F541495007208C6 /* DiscoViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7E9DA3231F5414EF007208C6 /* DiscoViewController.h */,
+				7E9DA3241F5414EF007208C6 /* DiscoViewController.m */,
+			);
+			name = DiscoViewController;
 			sourceTree = "<group>";
 		};
 		AE112584F0B33E870935F03B /* Pods */ = {
@@ -516,6 +529,7 @@
 				7E4BF0021F4E974F00B83455 /* SettingsViewController.m in Sources */,
 				7EAE8EC41F4AC6F700F70052 /* SelectColorVC.m in Sources */,
 				7E2769011F4C42C600199E50 /* CollectionViewCell.m in Sources */,
+				7E9DA3251F5414EF007208C6 /* DiscoViewController.m in Sources */,
 				7E52EE101F47040D008D8350 /* AppDelegate.m in Sources */,
 				7E9E6CC41F4AC3B900236C92 /* VBColorPicker.m in Sources */,
 				7EAE8EC71F4AE71C00F70052 /* ShowCandleViewController.m in Sources */,

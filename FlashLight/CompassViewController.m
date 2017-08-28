@@ -48,7 +48,7 @@
     //[manager stopUpdatingHeading];
     
     double rotation = newHeading.magneticHeading * 3.14159 / 180;
-    NSLog(@"Rotation is %f",rotation);
+//    NSLog(@"Rotation is %f",rotation);
     
     [self.compassImage setTransform:CGAffineTransformMakeRotation(-rotation)];
 }

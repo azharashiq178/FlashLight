@@ -12,5 +12,6 @@
 @interface SelectColorVC : UIViewController
 @property (nonatomic, strong) IBOutlet UIView *rect;
 - (IBAction)dismissScreen:(id)sender;
+@property (weak, nonatomic) IBOutlet UISlider *screenBrightnessSlider;
 @property (nonatomic, strong) VBColorPicker *cPicker;
 @end

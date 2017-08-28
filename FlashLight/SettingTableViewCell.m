@@ -24,16 +24,12 @@
 - (IBAction)didChangedIndicator:(id)sender {
 //    if(self.settingIndicator.tag == )
     if([self.settingName.text  isEqualToString: @"Auto Turn On"]){
-        if(self.settingIndicator.isOn){
-            [self.settingIndicator setOn:NO];
-        }
-        else{
-            [self.settingIndicator setOn:YES];
-        }
-        
+        [[NSUserDefaults standardUserDefaults] setBool:self.settingIndicator.isOn forKey:@"Auto"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }
     else if([self.settingName.text  isEqualToString: @"Disco"]){
-        NSLog(@"Disco");
+        [[NSUserDefaults standardUserDefaults] setBool:self.settingIndicator.isOn forKey:@"Disco"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
         
     }
     else if([self.settingName.text  isEqualToString: @"Compass"]){
@@ -42,11 +38,13 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
         
         
-        NSLog(@"Value of user defaults is %d",[[NSUserDefaults standardUserDefaults] boolForKey:@"Compass"]);
+//        NSLog(@"Value of user defaults is %d",[[NSUserDefaults standardUserDefaults] boolForKey:@"Compass"]);
         
     }
     else if([self.settingName.text  isEqualToString: @"Gesture Driven Light Switch"]){
-        NSLog(@"Gesture Driven Light Switch");
+//        NSLog(@"Gesture Driven Light Switch");
+        [[NSUserDefaults standardUserDefaults] setBool:self.settingIndicator.isOn forKey:@"Gesture"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
         
     }
     else if([self.settingName.text  isEqualToString: @"Go Pro"]){
@@ -62,6 +60,15 @@
     }
     else if([self.settingName.text isEqualToString:@"Compass"]){
         [self.settingIndicator setOn:[[NSUserDefaults standardUserDefaults] boolForKey:@"Compass"]];
+    }
+    else if ([self.settingName.text isEqualToString:@"Gesture Driven Light Switch"]){
+        [self.settingIndicator setOn:[[NSUserDefaults standardUserDefaults] boolForKey:@"Gesture"]];
+    }
+    else if ([self.settingName.text isEqualToString:@"Auto Turn On"]){
+        [self.settingIndicator setOn:[[NSUserDefaults standardUserDefaults] boolForKey:@"Auto"]];
+    }
+    else if ([self.settingName.text isEqualToString:@"Disco"]){
+        [self.settingIndicator setOn:[[NSUserDefaults standardUserDefaults] boolForKey:@"Disco"]];
     }
     
 }
