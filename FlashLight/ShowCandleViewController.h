@@ -14,5 +14,10 @@
 //- (IBAction)resetMaxValues:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UIView *myView;
+//@property (weak, nonatomic) IBOutlet UIView *myView;
 @property (strong, nonatomic) CMMotionManager *motionManager;
+@property (weak, nonatomic) IBOutlet UIImageView *capturedImage;
+@property (weak, nonatomic) IBOutlet UIButton *captureImage;
+- (IBAction)captureImageAction:(id)sender;
+- (IBAction)changeCamera:(id)sender;
 @end

@@ -134,9 +134,12 @@
                                     <action selector="showCompassController:" destination="BYZ-38-t0r" eventType="touchUpInside" id="e9w-6o-EEr"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="79l-bW-C9R">
-                                <rect key="frame" x="18" y="122" width="80" height="80"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="79l-bW-C9R">
+                                <rect key="frame" x="0.0" y="122" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="L44-II-0pm"/>
+                                    <constraint firstAttribute="height" constant="80" id="hpT-My-OCX"/>
+                                </constraints>
                                 <state key="normal" image="disco@1x"/>
                                 <connections>
                                     <action selector="showDisco:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jFK-MU-ZBA"/>
@@ -149,6 +152,7 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="8qZ-Fr-dFp" firstAttribute="trailing" secondItem="NyN-2n-ey7" secondAttribute="trailing" constant="2" id="0QZ-sh-nM3"/>
+                            <constraint firstItem="79l-bW-C9R" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="0y1-gm-eDh"/>
                             <constraint firstItem="wS2-Qw-gJZ" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="57.5" id="6p7-15-KwA"/>
                             <constraint firstItem="O9e-fi-tGt" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="7GW-pk-gFt"/>
                             <constraint firstItem="NeY-Te-qvc" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="9Pd-L4-neI"/>
@@ -164,6 +168,7 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Nyu-1o-AvH" secondAttribute="bottom" constant="13" id="Q0A-dc-aus"/>
                             <constraint firstItem="QQZ-s8-cvN" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="24" id="RBI-hI-5eU"/>
                             <constraint firstAttribute="trailing" secondItem="NyN-2n-ey7" secondAttribute="trailing" id="UgJ-eS-6an"/>
+                            <constraint firstItem="79l-bW-C9R" firstAttribute="top" secondItem="NyN-2n-ey7" secondAttribute="bottom" constant="8" id="Xt0-FU-evk"/>
                             <constraint firstItem="ltn-wh-Pzg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="-1.5" id="d4c-Y0-QgQ"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="NeY-Te-qvc" secondAttribute="bottom" constant="13" id="el9-Ki-rDV"/>
                             <constraint firstAttribute="trailing" secondItem="NV4-3a-wtC" secondAttribute="trailing" constant="-1" id="etO-Wv-9vf"/>
@@ -357,14 +362,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hqB-Hn-mqy">
-                                <rect key="frame" x="-2" y="31" width="81" height="31"/>
+                                <rect key="frame" x="5" y="31" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="close"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="dismissScreen:" destination="OQ7-Qb-LTa" eventType="touchUpInside" id="hRx-kI-Z7x"/>
                                 </connections>
                             </button>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" minimumValueImage="brightness_small_icon" maximumValueImage="brightness_big_icon" translatesAutoresizingMaskIntoConstraints="NO" id="PWQ-hO-A47">
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" minimumValueImage="slider:PWQ-hO-A47:minimumValueImage" maximumValueImage="slider:PWQ-hO-A47:maximumValueImage" translatesAutoresizingMaskIntoConstraints="NO" id="PWQ-hO-A47">
                                 <rect key="frame" x="37" y="602" width="301" height="31"/>
                                 <color key="minimumTrackTintColor" red="0.062025301159999997" green="0.071416400369999994" blue="0.086383946239999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="maximumTrackTintColor" red="0.062025301159999997" green="0.071416400369999994" blue="0.086383946239999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -402,32 +412,65 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u45-Xm-mJF">
-                                <rect key="frame" x="0.0" y="0.0" width="373" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="CUG-VC-lxn">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WOc-pr-1x0">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="WOc-pr-1x0" firstAttribute="top" secondItem="u45-Xm-mJF" secondAttribute="top" id="Ddo-5v-qfL"/>
+                                    <constraint firstItem="WOc-pr-1x0" firstAttribute="leading" secondItem="u45-Xm-mJF" secondAttribute="leading" id="SJa-EG-8S0"/>
+                                    <constraint firstAttribute="bottom" secondItem="WOc-pr-1x0" secondAttribute="bottom" id="TIB-bR-9Yg"/>
+                                    <constraint firstAttribute="trailing" secondItem="WOc-pr-1x0" secondAttribute="trailing" id="ZpF-MX-mAm"/>
+                                </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eme-FA-dLn">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <connections>
+                                    <action selector="captureImageAction:" destination="GdW-33-vpR" eventType="touchUpInside" id="pWf-7u-yOQ"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xp5-7r-J5e">
-                                <rect key="frame" x="5" y="23" width="81" height="25"/>
+                                <rect key="frame" x="11" y="23" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" image="close"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="dissmissScreen:" destination="GdW-33-vpR" eventType="touchUpInside" id="A0f-HH-jQ2"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="candle" translatesAutoresizingMaskIntoConstraints="NO" id="rri-qe-1hH">
-                                <rect key="frame" x="0.0" y="219" width="373" height="448"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w5O-VZ-5eW">
+                                <rect key="frame" x="262" y="19" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="changeCamera:" destination="GdW-33-vpR" eventType="touchUpInside" id="jex-ef-rHo"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eku-dl-S9Q">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="candle" translatesAutoresizingMaskIntoConstraints="NO" id="rri-qe-1hH">
+                                <rect key="frame" x="0.0" y="268" width="375" height="448"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="448" id="QYh-Wa-mje"/>
+                                    <constraint firstAttribute="height" constant="448" id="c7z-FJ-eyl"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flame1" translatesAutoresizingMaskIntoConstraints="NO" id="jKr-Lu-DWT">
-                                <rect key="frame" x="137" y="277" width="100" height="148"/>
+                                <rect key="frame" x="137" y="315" width="100" height="148"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="sk2-gD-MJu"/>
                                     <constraint firstAttribute="height" constant="148" id="vzJ-oM-xa6"/>
@@ -436,20 +479,30 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="jKr-Lu-DWT" firstAttribute="leading" secondItem="Ij1-NA-Nwa" secondAttribute="leading" constant="137" id="9Bh-RT-RLc"/>
-                            <constraint firstItem="rri-qe-1hH" firstAttribute="leading" secondItem="u45-Xm-mJF" secondAttribute="leading" id="9J5-8n-YqM"/>
-                            <constraint firstItem="rri-qe-1hH" firstAttribute="bottom" secondItem="u45-Xm-mJF" secondAttribute="bottom" id="B55-mz-Ze1"/>
-                            <constraint firstItem="rri-qe-1hH" firstAttribute="trailing" secondItem="u45-Xm-mJF" secondAttribute="trailing" id="Dv3-Pi-CKo"/>
-                            <constraint firstItem="rri-qe-1hH" firstAttribute="centerX" secondItem="jKr-Lu-DWT" secondAttribute="centerX" id="GW7-Ub-mSq"/>
-                            <constraint firstItem="jKr-Lu-DWT" firstAttribute="top" secondItem="IBS-dO-nre" secondAttribute="bottom" constant="257" id="Hjq-ED-uOS"/>
+                            <constraint firstItem="eme-FA-dLn" firstAttribute="top" secondItem="u45-Xm-mJF" secondAttribute="top" id="2Ow-df-Mmi"/>
+                            <constraint firstItem="rri-qe-1hH" firstAttribute="leading" secondItem="eme-FA-dLn" secondAttribute="leading" id="Cdv-gN-f7s"/>
+                            <constraint firstItem="rri-qe-1hH" firstAttribute="leading" secondItem="eku-dl-S9Q" secondAttribute="leading" id="Cki-Zb-iTF"/>
+                            <constraint firstAttribute="trailing" secondItem="eku-dl-S9Q" secondAttribute="trailing" id="G7t-IO-VcN"/>
+                            <constraint firstItem="jKr-Lu-DWT" firstAttribute="top" secondItem="IBS-dO-nre" secondAttribute="bottom" constant="295" id="Hjq-ED-uOS"/>
+                            <constraint firstItem="eku-dl-S9Q" firstAttribute="leading" secondItem="Ij1-NA-Nwa" secondAttribute="leading" id="IXn-c9-cAR"/>
+                            <constraint firstItem="eme-FA-dLn" firstAttribute="bottom" secondItem="u45-Xm-mJF" secondAttribute="bottom" id="IeH-ch-b3R"/>
+                            <constraint firstItem="rri-qe-1hH" firstAttribute="leading" secondItem="u45-Xm-mJF" secondAttribute="leading" id="R0e-jp-ppx"/>
                             <constraint firstItem="u45-Xm-mJF" firstAttribute="top" secondItem="Ij1-NA-Nwa" secondAttribute="top" id="Zjb-gY-itK"/>
-                            <constraint firstItem="rri-qe-1hH" firstAttribute="bottom" secondItem="IET-N5-PgK" secondAttribute="top" id="n9Z-oA-jGJ"/>
-                            <constraint firstItem="rri-qe-1hH" firstAttribute="leading" secondItem="Ij1-NA-Nwa" secondAttribute="leading" id="nSj-Vm-b7u"/>
+                            <constraint firstItem="rri-qe-1hH" firstAttribute="trailing" secondItem="eme-FA-dLn" secondAttribute="trailing" id="b71-AP-rkW"/>
+                            <constraint firstItem="eme-FA-dLn" firstAttribute="bottom" secondItem="IET-N5-PgK" secondAttribute="top" id="j43-gR-Bkd"/>
+                            <constraint firstItem="IET-N5-PgK" firstAttribute="top" secondItem="eku-dl-S9Q" secondAttribute="bottom" id="m01-zX-fB2"/>
+                            <constraint firstItem="eku-dl-S9Q" firstAttribute="top" secondItem="Ij1-NA-Nwa" secondAttribute="top" id="nNP-WC-7ab"/>
+                            <constraint firstItem="jKr-Lu-DWT" firstAttribute="centerX" secondItem="Ij1-NA-Nwa" secondAttribute="centerX" id="qzo-hQ-004"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="rri-qe-1hH" secondAttribute="bottom" constant="-49" id="tDs-uI-5Xk"/>
+                            <constraint firstItem="rri-qe-1hH" firstAttribute="trailing" secondItem="u45-Xm-mJF" secondAttribute="trailing" id="uej-oG-hWC"/>
+                            <constraint firstItem="rri-qe-1hH" firstAttribute="trailing" secondItem="eku-dl-S9Q" secondAttribute="trailing" id="z5e-mz-VPQ"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="captureImage" destination="eme-FA-dLn" id="YHH-n9-8Yh"/>
+                        <outlet property="capturedImage" destination="eku-dl-S9Q" id="1Vo-8I-nY6"/>
                         <outlet property="myGif" destination="jKr-Lu-DWT" id="lCN-Ih-0Bp"/>
-                        <outlet property="myView" destination="u45-Xm-mJF" id="mch-9L-MDh"/>
+                        <outlet property="myView" destination="WOc-pr-1x0" id="FRR-Fb-d5T"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x6w-kq-N5L" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -476,9 +529,15 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R35-Ks-Uhf">
-                                <rect key="frame" x="5" y="23" width="81" height="36"/>
+                                <rect key="frame" x="5" y="23" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" image="close"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="dismissView:" destination="JyV-Bq-ZDi" eventType="touchUpInside" id="cwI-aR-5rC"/>
                                 </connections>
@@ -517,10 +576,16 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4QT-cK-Q8f">
-                                <rect key="frame" x="10" y="20" width="64" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4QT-cK-Q8f">
+                                <rect key="frame" x="15" y="24" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Cancel"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" image="close"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="dismissScreen:" destination="xeQ-xs-VlV" eventType="touchUpInside" id="gsI-gG-x2f"/>
                                 </connections>
@@ -578,7 +643,7 @@
         <image name="color_normal_btn" width="80" height="80"/>
         <image name="color_pressed_btn" width="80" height="80"/>
         <image name="compass_bg" width="63" height="63"/>
-        <image name="disco@1x" width="43" height="43"/>
+        <image name="disco@1x" width="63" height="63"/>
         <image name="fire_normal_btn" width="80" height="80"/>
         <image name="fire_pressed_btn" width="80" height="80"/>
         <image name="flame1" width="171" height="425"/>
@@ -588,6 +653,128 @@
         <image name="go_pro_pressed_btn" width="129" height="129"/>
         <image name="more_btn" width="43" height="43"/>
         <image name="settings_btn" width="43" height="43"/>
+        <image name="slider:PWQ-hO-A47:maximumValueImage" width="14" height="14">
+            <mutableData key="keyedArchiveRepresentation">
+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
+AALYemhDTgAAABYAAAPMamFKUAAAABoAAAPiZWxHUgAAACIAAAP8cHRQTwAAACYAAAQebmxOTAAAACgA
+AAREZXNFUwAAACYAAAQedGhUSAAAACQAAARsdHJUUgAAACIAAASQZmlGSQAAACgAAASyaHJIUgAAACgA
+AATacGxQTAAAACwAAAUCcnVSVQAAACIAAAUuYXJFRwAAACYAAAVQZW5VUwAAACYAAAV2AFYBYQBlAG8A
+YgBlAGMAbgD9ACAAUgBHAEIAIABwAHIAbwBmAGkAbABHAGUAbgBlAHIAZQBsACAAUgBHAEIALQBiAGUA
+cwBrAHIAaQB2AGUAbABzAGUAUABlAHIAZgBpAGwAIABSAEcAQgAgAGcAZQBuAOgAcgBpAGMAQx6lAHUA
+IABoAOwAbgBoACAAUgBHAEIAIABDAGgAdQBuAGcAUABlAHIAZgBpAGwAIABSAEcAQgAgAEcAZQBuAOkA
+cgBpAGMAbwQXBDAEMwQwBDsETAQ9BDgEOQAgBD8EQAQ+BEQEMAQ5BDsAIABSAEcAQgBQAHIAbwBmAGkA
+bAAgAGcA6QBuAOkAcgBpAHEAdQBlACAAUgBWAEIAwQBsAHQAYQBsAOEAbgBvAHMAIABSAEcAQgAgAHAA
+cgBvAGYAaQBskBp1KAAgAFIARwBCACCCcl9pY8+P8ABHAGUAbgBlAHIAaQBzAGsAIABSAEcAQgAtAHAA
+cgBvAGYAaQBsAE8AYgBlAGMAbgD9ACAAUgBHAEIAIABwAHIAbwBmAGkAbAXkBegF1QXkBdkF3AAgAFIA
+RwBCACAF2wXcBdwF2QBQAHIAbwBmAGkAbABvACAAUgBHAEIAIABnAGUAbgBlAHIAaQBjAG8AUAByAG8A
+ZgBpAGwAIABSAEcAQgAgAGcAZQBuAGUAcgBpAGMAQQBsAGwAZwBlAG0AZQBpAG4AZQBzACAAUgBHAEIA
+LQBQAHIAbwBmAGkAbMd8vBgAIABSAEcAQgAg1QS4XNMMx3xmbpAaACAAUgBHAEIAIGPPj/Blh072TgCC
+LAAgAFIARwBCACAw1zDtMNUwoTCkMOsDkwO1A70DuQO6A8wAIAPAA8EDvwPGA68DuwAgAFIARwBCAFAA
+ZQByAGYAaQBsACAAUgBHAEIAIABnAGUAbgDpAHIAaQBjAG8AQQBsAGcAZQBtAGUAZQBuACAAUgBHAEIA
+LQBwAHIAbwBmAGkAZQBsDkIOGw4jDkQOHw4lDkwAIABSAEcAQgAgDhcOMQ5IDicORA4bAEcAZQBuAGUA
+bAAgAFIARwBCACAAUAByAG8AZgBpAGwAaQBZAGwAZQBpAG4AZQBuACAAUgBHAEIALQBwAHIAbwBmAGkA
+aQBsAGkARwBlAG4AZQByAGkBDQBrAGkAIABSAEcAQgAgAHAAcgBvAGYAaQBsAFUAbgBpAHcAZQByAHMA
+YQBsAG4AeQAgAHAAcgBvAGYAaQBsACAAUgBHAEIEHgQxBEkEOAQ5ACAEPwRABD4ERAQ4BDsETAAgAFIA
+RwBCBkUGRAZBACAGKgY5BjEGSgZBACAAUgBHAEIAIAYnBkQGOQYnBkUARwBlAG4AZQByAGkAYwAgAFIA
+RwBCACAAUAByAG8AZgBpAGwAZXRleHQAAAAAQ29weXJpZ2h0IDIwMDcgQXBwbGUgSW5jLiwgYWxsIHJp
+Z2h0cyByZXNlcnZlZC4AWFlaIAAAAAAAAPNSAAEAAAABFs9YWVogAAAAAAAAdE0AAD3uAAAD0FhZWiAA
+AAAAAABadQAArHMAABc0WFlaIAAAAAAAACgaAAAVnwAAuDZjdXJ2AAAAAAAAAAEBzQAAc2YzMgAAAAAA
+AQxCAAAF3v//8yYAAAeSAAD9kf//+6L///2jAAAD3AAAwGzSJSYnKFokY2xhc3NuYW1lWCRjbGFzc2Vz
+XxAQTlNCaXRtYXBJbWFnZVJlcKMnKSpaTlNJbWFnZVJlcFhOU09iamVjdNIlJiwtV05TQXJyYXmiLCrS
+JSYvMF5OU011dGFibGVBcnJheaMvLCrTMjMKNDU2V05TV2hpdGVcTlNDb2xvclNwYWNlRDAgMAAQA4AM
+0iUmODlXTlNDb2xvcqI4KtIlJjs8V05TSW1hZ2WiOypfEA9OU0tleWVkQXJjaGl2ZXLRP0BUcm9vdIAB
+AAgAEQAaACMALQAyADcARgBMAFcAXgBlAHIAeQCBAIMAhQCKAIwAjgCXAJwApwCpAKsArQCyALUAtwC5
+ALsAvQDCANkA2wDdDI8MlAyfDKgMuwy/DMoM0wzYDOAM4wzoDPcM+w0CDQoNFw0cDR4NIA0lDS0NMA01
+DT0NQA1SDVUNWgAAAAAAAAIBAAAAAAAAAEEAAAAAAAAAAAAAAAAAAA1cA
+</mutableData>
+        </image>
+        <image name="slider:PWQ-hO-A47:minimumValueImage" width="10" height="10">
+            <mutableData key="keyedArchiveRepresentation">
+YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
+GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
+c1dOU0NvbG9ygAKADRIgwAAAgAOAC1h7MTAsIDEwfdIVChYYWk5TLm9iamVjdHOhF4AEgArSFQoaHaIb
+HIAFgAaACRAA0iAKISJfEBROU1RJRkZSZXByZXNlbnRhdGlvboAHgAhPEQouTU0AKgAAAZgAAAAAAAAA
+AAAAAAAAAAAAJCUnWCQmKVoAAAAAAAAAAAAAAAAAAAAAAAAAAAwMDSAPEBAoAAAAACYoKmMoKixlAAAA
+AA8QECcMDA0hAAAAAAAAAAAPEBAoOjxBnQUFBhAcHR9OHR0eTwUFBg86PUCcDw8RKgAAAAAAAAAAAAAA
+AAUFBQ8tLzKEMTQ3jjEzN40tLzKGBQUFDwAAAAAAAAAAGhsdVx0eIGEYGhtRLS8zjgAAAAAAAAAALS8y
+jRobHFQdHiBhGhseVxkbHVccHh9hGBkaUCgpLY4AAAAAAAAAACcpLY0YGRtUHB0fYRkbHVcAAAAAAAAA
+AAMEAw8iJCaEJCYojiQlKY4jJSeGAwMDDwAAAAAAAAAAAAAAAAkJCigkJiidAwMDEBITFU0SExVPAwMD
+DyQmKZwJCQspAAAAAAAAAAAGBwchCQkKKAAAAAAUFhhjFRYYZQAAAAAICQonBgcHIQAAAAAAAAAAAAAA
+AAAAAAAAAAAAERIUWBETFFoAAAAAAAAAAAAAAAAAAAAAAA4BAAADAAAAAQAKAAABAQADAAAAAQAKAAAB
+AgADAAAABAAAAkYBAwADAAAAAQABAAABBgADAAAAAQACAAABEQAEAAAAAQAAAAgBEgADAAAAAQABAAAB
+FQADAAAAAQAEAAABFgADAAAAAQAKAAABFwAEAAAAAQAAAZABHAADAAAAAQABAAABUgADAAAAAQABAAAB
+UwADAAAABAAAAk6HcwAHAAAH2AAAAlYAAAAAAAgACAAIAAgAAQABAAEAAQAAB9hhcHBsAiAAAG1udHJS
+R0IgWFlaIAfZAAIAGQALABoAC2Fjc3BBUFBMAAAAAGFwcGwAAAAAAAAAAAAAAAAAAAAAAAD21gABAAAA
+ANMtYXBwbAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC2Rlc2MA
+AAEIAAAAb2RzY20AAAF4AAAFnGNwcnQAAAcUAAAAOHd0cHQAAAdMAAAAFHJYWVoAAAdgAAAAFGdYWVoA
+AAd0AAAAFGJYWVoAAAeIAAAAFHJUUkMAAAecAAAADmNoYWQAAAesAAAALGJUUkMAAAecAAAADmdUUkMA
+AAecAAAADmRlc2MAAAAAAAAAFEdlbmVyaWMgUkdCIFByb2ZpbGUAAAAAAAAAAAAAABRHZW5lcmljIFJH
+QiBQcm9maWxlAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABt
+bHVjAAAAAAAAAB8AAAAMc2tTSwAAACgAAAGEZGFESwAAAC4AAAGsY2FFUwAAACQAAAHadmlWTgAAACQA
+AAH+cHRCUgAAACYAAAIidWtVQQAAACoAAAJIZnJGVQAAACgAAAJyaHVIVQAAACgAAAKaemhUVwAAABYA
+AALCbmJOTwAAACYAAALYY3NDWgAAACIAAAL+aGVJTAAAAB4AAAMgaXRJVAAAACgAAAM+cm9STwAAACQA
+AANmZGVERQAAACwAAAOKa29LUgAAABYAAAO2c3ZTRQAAACYAAALYemhDTgAAABYAAAPMamFKUAAAABoA
+AAPiZWxHUgAAACIAAAP8cHRQTwAAACYAAAQebmxOTAAAACgAAAREZXNFUwAAACYAAAQedGhUSAAAACQA
+AARsdHJUUgAAACIAAASQZmlGSQAAACgAAASyaHJIUgAAACgAAATacGxQTAAAACwAAAUCcnVSVQAAACIA
+AAUuYXJFRwAAACYAAAVQZW5VUwAAACYAAAV2AFYBYQBlAG8AYgBlAGMAbgD9ACAAUgBHAEIAIABwAHIA
+bwBmAGkAbABHAGUAbgBlAHIAZQBsACAAUgBHAEIALQBiAGUAcwBrAHIAaQB2AGUAbABzAGUAUABlAHIA
+ZgBpAGwAIABSAEcAQgAgAGcAZQBuAOgAcgBpAGMAQx6lAHUAIABoAOwAbgBoACAAUgBHAEIAIABDAGgA
+dQBuAGcAUABlAHIAZgBpAGwAIABSAEcAQgAgAEcAZQBuAOkAcgBpAGMAbwQXBDAEMwQwBDsETAQ9BDgE
+OQAgBD8EQAQ+BEQEMAQ5BDsAIABSAEcAQgBQAHIAbwBmAGkAbAAgAGcA6QBuAOkAcgBpAHEAdQBlACAA
+UgBWAEIAwQBsAHQAYQBsAOEAbgBvAHMAIABSAEcAQgAgAHAAcgBvAGYAaQBskBp1KAAgAFIARwBCACCC
+cl9pY8+P8ABHAGUAbgBlAHIAaQBzAGsAIABSAEcAQgAtAHAAcgBvAGYAaQBsAE8AYgBlAGMAbgD9ACAA
+UgBHAEIAIABwAHIAbwBmAGkAbAXkBegF1QXkBdkF3AAgAFIARwBCACAF2wXcBdwF2QBQAHIAbwBmAGkA
+bABvACAAUgBHAEIAIABnAGUAbgBlAHIAaQBjAG8AUAByAG8AZgBpAGwAIABSAEcAQgAgAGcAZQBuAGUA
+cgBpAGMAQQBsAGwAZwBlAG0AZQBpAG4AZQBzACAAUgBHAEIALQBQAHIAbwBmAGkAbMd8vBgAIABSAEcA
+QgAg1QS4XNMMx3xmbpAaACAAUgBHAEIAIGPPj/Blh072TgCCLAAgAFIARwBCACAw1zDtMNUwoTCkMOsD
+kwO1A70DuQO6A8wAIAPAA8EDvwPGA68DuwAgAFIARwBCAFAAZQByAGYAaQBsACAAUgBHAEIAIABnAGUA
+bgDpAHIAaQBjAG8AQQBsAGcAZQBtAGUAZQBuACAAUgBHAEIALQBwAHIAbwBmAGkAZQBsDkIOGw4jDkQO
+Hw4lDkwAIABSAEcAQgAgDhcOMQ5IDicORA4bAEcAZQBuAGUAbAAgAFIARwBCACAAUAByAG8AZgBpAGwA
+aQBZAGwAZQBpAG4AZQBuACAAUgBHAEIALQBwAHIAbwBmAGkAaQBsAGkARwBlAG4AZQByAGkBDQBrAGkA
+IABSAEcAQgAgAHAAcgBvAGYAaQBsAFUAbgBpAHcAZQByAHMAYQBsAG4AeQAgAHAAcgBvAGYAaQBsACAA
+UgBHAEIEHgQxBEkEOAQ5ACAEPwRABD4ERAQ4BDsETAAgAFIARwBCBkUGRAZBACAGKgY5BjEGSgZBACAA
+UgBHAEIAIAYnBkQGOQYnBkUARwBlAG4AZQByAGkAYwAgAFIARwBCACAAUAByAG8AZgBpAGwAZXRleHQA
+AAAAQ29weXJpZ2h0IDIwMDcgQXBwbGUgSW5jLiwgYWxsIHJpZ2h0cyByZXNlcnZlZC4AWFlaIAAAAAAA
+APNSAAEAAAABFs9YWVogAAAAAAAAdE0AAD3uAAAD0FhZWiAAAAAAAABadQAArHMAABc0WFlaIAAAAAAA
+ACgaAAAVnwAAuDZjdXJ2AAAAAAAAAAEBzQAAc2YzMgAAAAAAAQxCAAAF3v//8yYAAAeSAAD9kf//+6L/
+//2jAAAD3AAAwGzSJSYnKFokY2xhc3NuYW1lWCRjbGFzc2VzXxAQTlNCaXRtYXBJbWFnZVJlcKMnKSpa
+TlNJbWFnZVJlcFhOU09iamVjdNIlJiwtV05TQXJyYXmiLCrSJSYvMF5OU011dGFibGVBcnJheaMvLCrT
+MjMKNDU2V05TV2hpdGVcTlNDb2xvclNwYWNlRDAgMAAQA4AM0iUmODlXTlNDb2xvcqI4KtIlJjs8V05T
+SW1hZ2WiOypfEA9OU0tleWVkQXJjaGl2ZXLRP0BUcm9vdIABAAgAEQAaACMALQAyADcARgBMAFcAXgBl
+AHIAeQCBAIMAhQCKAIwAjgCXAJwApwCpAKsArQCyALUAtwC5ALsAvQDCANkA2wDdCw8LFAsfCygLOws/
+C0oLUwtYC2ALYwtoC3cLewuCC4oLlwucC54LoAulC60LsAu1C70LwAvSC9UL2gAAAAAAAAIBAAAAAAAA
+AEEAAAAAAAAAAAAAAAAAAAvcA
+</mutableData>
+        </image>
         <image name="top_bg" width="310" height="95"/>
         <image name="top_seperator_line" width="320" height="2"/>
     </resources>
