@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+@import GoogleMobileAds;
 
 @interface SettingsViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *settingsTableView;
 @property (weak, nonatomic) IBOutlet UICollectionView *themesCollectionView;
+@property (weak, nonatomic) IBOutlet GADBannerView *myBanner;
+
 
 @end

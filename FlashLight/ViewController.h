@@ -12,6 +12,7 @@
 #import <StoreKit/SKStoreProductViewController.h>
 #import <CoreLocation/CoreLocation.h>
 #import <StoreKit/SKStoreProductViewController.h>
+@import GoogleMobileAds;
 
 @interface ViewController : UIViewController <iCarouselDelegate,iCarouselDataSource,CLLocationManagerDelegate,SKStoreProductViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UISlider *screenBrightnessSlider;
@@ -19,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UISlider *torchIntensitySlider;
 @property (weak, nonatomic) IBOutlet UIButton *compassButton;
 @property (weak, nonatomic) IBOutlet UIButton *colorsButton;
+@property (weak, nonatomic) IBOutlet GADBannerView *myBanner;
 
 //@property (nonatomic, strong) IBOutlet UIView *rect;
 //@property (nonatomic, strong) VBColorPicker *cPicker;
