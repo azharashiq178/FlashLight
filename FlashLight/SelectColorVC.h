@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "VBColorPicker.h"
+@import GoogleMobileAds;
 
 @interface SelectColorVC : UIViewController
 @property (nonatomic, strong) IBOutlet UIView *rect;
 - (IBAction)dismissScreen:(id)sender;
 @property (weak, nonatomic) IBOutlet UISlider *screenBrightnessSlider;
+@property (weak, nonatomic) IBOutlet GADBannerView *myBanner;
 @property (nonatomic, strong) VBColorPicker *cPicker;
 @end

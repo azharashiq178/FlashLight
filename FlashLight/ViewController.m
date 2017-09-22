@@ -25,6 +25,7 @@
 @property (nonatomic,strong) NSArray *myData;
 @property (assign) int numberItems;
 @property (assign) int currentValue;
+@property(nonatomic, strong) GADInterstitial *interstitial;
 
 @end
 
@@ -34,7 +35,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self.activityIndicator setHidden:YES];
+    self.interstitial = [self createAndLoadInterstitial];
     self.myBanner.delegate = self;
     self.myBanner.adUnitID = @"ca-app-pub-6412217023250030/4184269478";
     self.myBanner.rootViewController = self;
@@ -49,7 +51,7 @@
 //    request.testDevices = @[ @"b5492ec64ecbad0f31be3bf73c85cf59" ];
     [self.myBanner loadRequest:request];
     
-    
+//    self.interstitial = [self createAndLoadInterstitial];
     
     [self.screenBrightnessSlider setThumbImage:[UIImage imageNamed:@"brightness_btn"] forState:UIControlStateNormal];
     [self.screenBrightnessSlider setMaximumTrackImage:[UIImage imageNamed:@"brightness_line"] forState:UIControlStateNormal];
@@ -64,7 +66,7 @@
 //    [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"Compass"];
 //    [[NSUserDefaults standardUserDefaults] synchronize];
     _Carousel.type = iCarouselTypeLinear;
-    [[UIScreen mainScreen] setBrightness:self.screenBrightnessSlider.value];
+//    [[UIScreen mainScreen] setBrightness:self.screenBrightnessSlider.value];
 //    device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
     device = nil;
     [self.torchIntensitySlider setEnabled:NO];
@@ -89,6 +91,9 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    if (self.interstitial.isReady) {
+        [self.interstitial presentFromRootViewController:self];
+    }
     [self.compassButton setHidden:![[NSUserDefaults standardUserDefaults] boolForKey:@"Compass"]];
     [self.discoButton setHidden:![[NSUserDefaults standardUserDefaults] boolForKey:@"Disco"]];
     
@@ -110,6 +115,9 @@
     myTimer = nil;
 //    if(([self.torchButton.currentImage isEqual: [UIImage imageNamed:@"flash_on_btn"]])){
     if(device!=nil){
+        if (self.interstitial.isReady) {
+            [self.interstitial presentFromRootViewController:self];
+        }
         [device lockForConfiguration:nil];
         [myTimer invalidate];
         myTimer = nil;
@@ -199,6 +207,7 @@
                 }];
             }
         } else {
+            
             [myTimer invalidate];
             myTimer = nil;
             
@@ -259,10 +268,14 @@
     
     UIViewController * vc = [storyboard instantiateViewControllerWithIdentifier:@"SelectColorVC"];
     
-    [self presentViewController:vc animated:YES completion:nil];
+    [self presentViewController:vc animated:YES completion:^{
+        NSLog(@"Completed");
+    }];
 }
 - (IBAction)showFlameController:(id)sender {
-    
+//    if (self.interstitial.isReady) {
+//        [self.interstitial presentFromRootViewController:self];
+//    }
     NSString * storyboardName = @"Main";
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle: nil];
@@ -698,9 +711,13 @@
 }
 
 - (IBAction)moreApps:(id)sender {
+    [self.activityIndicator setHidden:NO];
+    [self.activityIndicator startAnimating];
     SKStoreProductViewController* spvc = [[SKStoreProductViewController alloc] init];
     [spvc loadProductWithParameters:@{SKStoreProductParameterITunesItemIdentifier : @1258137713}
                     completionBlock:^(BOOL result, NSError * _Nullable error) {
+                        [self.activityIndicator stopAnimating];
+                        [self.activityIndicator setHidden:YES];
                         [self presentViewController:spvc animated:YES completion:nil];
                     }];
     spvc.delegate = self;
@@ -798,5 +815,51 @@ didFailToReceiveAdWithError:(GADRequestError *)error {
 /// the App Store), backgrounding the current app.
 - (void)adViewWillLeaveApplication:(GADBannerView *)adView {
     NSLog(@"adViewWillLeaveApplication");
+}
+- (GADInterstitial *)createAndLoadInterstitial {
+    GADInterstitial *interstitial =
+    [[GADInterstitial alloc] initWithAdUnitID:@"ca-app-pub-6412217023250030/5114207765"];
+    interstitial.delegate = self;
+    [interstitial loadRequest:[GADRequest request]];
+    return interstitial;
+}
+- (void)interstitialDidDismissScreen:(GADInterstitial *)interstitial {
+    self.interstitial = [self createAndLoadInterstitial];
+}
+/// Tells the delegate an ad request succeeded.
+- (void)interstitialDidReceiveAd:(GADInterstitial *)ad {
+    NSLog(@"interstitialDidReceiveAd");
+}
+
+/// Tells the delegate an ad request failed.
+- (void)interstitial:(GADInterstitial *)ad
+didFailToReceiveAdWithError:(GADRequestError *)error {
+    NSLog(@"interstitial:didFailToReceiveAdWithError: %@", [error localizedDescription]);
+}
+
+/// Tells the delegate that an interstitial will be presented.
+- (void)interstitialWillPresentScreen:(GADInterstitial *)ad {
+    NSLog(@"interstitialWillPresentScreen");
+}
+
+/// Tells the delegate the interstitial is to be animated off the screen.
+- (void)interstitialWillDismissScreen:(GADInterstitial *)ad {
+    NSLog(@"interstitialWillDismissScreen");
+}
+/// Tells the delegate that a user click will open another app
+/// (such as the App Store), backgrounding the current app.
+- (void)interstitialWillLeaveApplication:(GADInterstitial *)ad {
+    NSLog(@"interstitialWillLeaveApplication");
+}
+- (IBAction)screenBrightnessAction:(id)sender {
+    NSString * storyboardName = @"Main";
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle: nil];
+    
+    UIViewController * vc = [storyboard instantiateViewControllerWithIdentifier:@"screenBrightness"];
+    
+    [self presentViewController:vc animated:YES completion:^{
+        NSLog(@"Completed");
+    }];
 }
 @end

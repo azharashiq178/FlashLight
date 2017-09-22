@@ -11,15 +11,19 @@
 
 @interface SettingsViewController ()
 @property (nonatomic,strong) NSArray *settingData;
+@property(nonatomic, strong) GADInterstitial *interstitial;
 @end
 
 @implementation SettingsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.interstitial = [self createAndLoadInterstitial];
     self.settingData = [[NSArray alloc] initWithObjects:@"Auto Turn On",@"Disco",@"Compass",@"Gesture Driven Light Switch", nil];
     
     // Do any additional setup after loading the view.
+    [self.settingsTableView setDelegate:self];
+    [self.settingsTableView setDataSource:self];
     [self.settingsTableView reloadData];
     self.myBanner.delegate = self;
     self.myBanner.adUnitID = @"ca-app-pub-6412217023250030/4184269478";
@@ -34,6 +38,9 @@
     //                            ];
 //        request.testDevices = @[ @"b5492ec64ecbad0f31be3bf73c85cf59" ];
     [self.myBanner loadRequest:request];
+}
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
 }
 //-(void)viewWillAppear:(BOOL)animated{
 //    [self.navigationController.navigationBar setHidden:NO];
@@ -70,6 +77,11 @@
     [cell showIndicator];
     
     return cell;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if([self.interstitial isReady]){
+        [self.interstitial presentFromRootViewController:self];
+    }
 }
 - (IBAction)dismissView:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
@@ -125,5 +137,15 @@ didFailToReceiveAdWithError:(GADRequestError *)error {
 /// the App Store), backgrounding the current app.
 - (void)adViewWillLeaveApplication:(GADBannerView *)adView {
     NSLog(@"adViewWillLeaveApplication");
+}
+- (GADInterstitial *)createAndLoadInterstitial {
+    GADInterstitial *interstitial =
+    [[GADInterstitial alloc] initWithAdUnitID:@"ca-app-pub-3940256099942544/4411468910"];
+    interstitial.delegate = self;
+    [interstitial loadRequest:[GADRequest request]];
+    return interstitial;
+}
+- (void)interstitialDidDismissScreen:(GADInterstitial *)interstitial {
+    self.interstitial = [self createAndLoadInterstitial];
 }
 @end

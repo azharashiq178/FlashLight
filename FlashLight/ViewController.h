@@ -14,7 +14,8 @@
 #import <StoreKit/SKStoreProductViewController.h>
 @import GoogleMobileAds;
 
-@interface ViewController : UIViewController <iCarouselDelegate,iCarouselDataSource,CLLocationManagerDelegate,SKStoreProductViewControllerDelegate>
+@interface ViewController : UIViewController <iCarouselDelegate,iCarouselDataSource,CLLocationManagerDelegate,SKStoreProductViewControllerDelegate,GADBannerViewDelegate>
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (weak, nonatomic) IBOutlet UISlider *screenBrightnessSlider;
 @property (weak, nonatomic) IBOutlet UIButton *torchButton;
 @property (weak, nonatomic) IBOutlet UISlider *torchIntensitySlider;

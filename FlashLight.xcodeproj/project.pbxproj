@@ -12,6 +12,7 @@
 		7E2769011F4C42C600199E50 /* CollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E2769001F4C42C600199E50 /* CollectionViewCell.m */; };
 		7E4BEFFF1F4E96E900B83455 /* SettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4BEFFE1F4E96E900B83455 /* SettingTableViewCell.m */; };
 		7E4BF0021F4E974F00B83455 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4BF0011F4E974F00B83455 /* SettingsViewController.m */; };
+		7E4CDF041F7533E000A62A99 /* ScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4CDF031F7533E000A62A99 /* ScreenViewController.m */; };
 		7E52EE0D1F47040D008D8350 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E52EE0C1F47040D008D8350 /* main.m */; };
 		7E52EE101F47040D008D8350 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E52EE0F1F47040D008D8350 /* AppDelegate.m */; };
 		7E52EE131F47040D008D8350 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E52EE121F47040D008D8350 /* ViewController.m */; };
@@ -64,6 +65,8 @@
 		7E4BEFFE1F4E96E900B83455 /* SettingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingTableViewCell.m; sourceTree = "<group>"; };
 		7E4BF0001F4E974F00B83455 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		7E4BF0011F4E974F00B83455 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		7E4CDF021F7533E000A62A99 /* ScreenViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScreenViewController.h; sourceTree = "<group>"; };
+		7E4CDF031F7533E000A62A99 /* ScreenViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScreenViewController.m; sourceTree = "<group>"; };
 		7E52EE081F47040D008D8350 /* FlashLight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlashLight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E52EE0C1F47040D008D8350 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7E52EE0E1F47040D008D8350 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -188,6 +191,8 @@
 				7E4BEFFE1F4E96E900B83455 /* SettingTableViewCell.m */,
 				7E4BF0001F4E974F00B83455 /* SettingsViewController.h */,
 				7E4BF0011F4E974F00B83455 /* SettingsViewController.m */,
+				7E4CDF021F7533E000A62A99 /* ScreenViewController.h */,
+				7E4CDF031F7533E000A62A99 /* ScreenViewController.m */,
 			);
 			path = FlashLight;
 			sourceTree = "<group>";
@@ -539,6 +544,7 @@
 				7E903AE01F4D3F3200E5843F /* iCarousel.m in Sources */,
 				7E52EE191F47040D008D8350 /* FlashLight.xcdatamodeld in Sources */,
 				7E4BF0021F4E974F00B83455 /* SettingsViewController.m in Sources */,
+				7E4CDF041F7533E000A62A99 /* ScreenViewController.m in Sources */,
 				7EAE8EC41F4AC6F700F70052 /* SelectColorVC.m in Sources */,
 				7E2769011F4C42C600199E50 /* CollectionViewCell.m in Sources */,
 				7E9DA3251F5414EF007208C6 /* DiscoViewController.m in Sources */,
